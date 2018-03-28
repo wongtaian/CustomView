@@ -7,8 +7,24 @@
     android:layout_height="match_parent"
     tools:context="com.konggeek.hz.customview.MainActivity">
     <com.konggeek.hz.customview.chart.PieChart3DView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"/>
+        android:id="@+id/pie_3d"
+        android:layout_width="1000px"
+        android:layout_height="800px"
+        android:layout_centerInParent="true"
+        android:visibility="gone"/>
+    <com.konggeek.hz.customview.chart.BezierViw
+        android:layout_width="match_parent"
+        android:layout_height="600px"
+        android:layout_centerInParent="true"
+        android:visibility="gone"/>
+    <com.konggeek.hz.customview.chart.BarChartView
+        android:id="@+id/bar_chart"
+        android:layout_width="match_parent"
+        android:layout_height="380dp"
+        android:layout_centerInParent="true"
+        android:visibility="gone"/>
+    <com.konggeek.hz.customview.chart.ClockView android:layout_width="match_parent"
+                                                android:layout_height="380dp"
+                                                android:layout_centerInParent="true"/>
 
 </RelativeLayout>

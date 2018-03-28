@@ -9,7 +9,7 @@ import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.konggeek.hz.customview.chart.PieChart3DView;
+import com.konggeek.hz.customview.chart.BarChartView;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -21,11 +21,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        final PieChart3DView pieChart3DView = findViewById(R.id.pie_3d);
-        pieChart3DView.setOnClickListener(new View.OnClickListener() {
+        final BarChartView barChartView = findViewById(R.id.bar_chart);
+        barChartView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewSaveToImage(pieChart3DView);
+                viewSaveToImage(barChartView);
             }
         });
     }
