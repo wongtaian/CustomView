@@ -5,6 +5,8 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.Typeface;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -52,7 +54,7 @@ public class ClockView extends View {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         centreX = getWidth() / 2f;
         centreY = getHeight() / 2f;
-        radius = (Math.min(getWidth(), getHeight()) / 2) - 100;
+        radius = (Math.min(getWidth(), getHeight()) / 2) - 20;
     }
 
     @Override
@@ -62,23 +64,25 @@ public class ClockView extends View {
         canvas.save();
         paint.setColor(Color.BLACK);
         paint.setStyle(Paint.Style.FILL);
+        //画表盘
         canvas.drawCircle(centreX, centreY, radius, paint);
         paint.setColor(Color.WHITE);
         for (int i = 0; i < 60; i++) {
+            //画刻度
             canvas.drawCircle(centreX + radius - 30f, centreY, i % 5 == 0 ? 8f : 3f, paint);
+            //每刻度之间弧度差6度，旋转画布6度。
             canvas.rotate(6, centreX, centreY);
         }
         canvas.restore();
 
+        paint.setTextSize(36f);
+        paint.setTypeface(Typeface.DEFAULT_BOLD);
         canvas.save();
-        paint.setTextSize(32f);
         for (int i = 0; i < 12; i++) {
-//            canvas.drawText(String.valueOf(i == 0 ? 12 : i), centreX - 16f, centreY - radius + 90, paint);
-//            canvas.rotate(30, centreX, centreY);
-            float[] cale = getCale(i);
-            canvas.drawText(String.valueOf(i+1), cale[0], cale[1], paint);
+            drawText(canvas, i);
         }
         canvas.restore();
+
 
         String[] split = getTime().split("-");
         int second = Integer.parseInt(split[2]);
@@ -127,11 +131,39 @@ public class ClockView extends View {
         return simpleDateFormat.format(new Date(System.currentTimeMillis()));
     }
 
+    /** 画表盘上的数字
+     在中心点画文本，再根据旋转角度，挪动到指定位置，再旋转反向角度使文字正向；绘制文字后原路返回
+     @param canvas
+     @param i       */
+    private void drawText(Canvas canvas, int i) {
+        int degrees = i * 30;
+        String s = String.valueOf(i == 0 ? 12 : i);
+        Rect textBound = new Rect();
+        //获取文字的占用范围
+        paint.getTextBounds(s, 0, s.length(), textBound);
+
+
+        canvas.rotate(degrees, centreX, centreY);
+        canvas.translate(0,  -radius + 90f );
+        canvas.rotate(-degrees, centreX, centreY);
+
+        //字符绘制的原点是左下角，向左和下各挪动文字占用范围的一般，可以让字符的中心与刻度一致。
+        canvas.drawText(s, centreX-(textBound.right-textBound.left)/2, centreY+(textBound.bottom-textBound.top)/2, paint);
+
+        canvas.rotate(degrees, centreX, centreY);
+        canvas.translate(0,  radius - 90f );
+        canvas.rotate(-degrees, centreX, centreY);
+    }
+
+
+    /** 用三角函数计算表盘上的坐标，因为精度问题，计算的坐标并不精确。
+     @param i
+     @return
+     */
     private float[] getCale(int i) {
         int angle = 60-(360 * i / 12);
         float x = (float) (centreX + (radius - 90f) * Math.cos(angle * Math.PI / 180f));
         float y = (float) (centreY - (radius - 90f) * Math.sin(angle * Math.PI / 180f));
         return new float[]{x-12f, y+12f};
     }
-
 }
