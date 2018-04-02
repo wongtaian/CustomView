@@ -23,3 +23,7 @@
 
    绘制文字还有问题时，canvas.drawText 是从大概文字的左下角做为原点的。这里我用 paint.getTextBounds 的方法获取文字的占用范围，是个矩形，把文字的绘制原点向左挪动矩形宽的一半，向下移动矩形高的一半，这样绘制出的文字的中心点正好与刻度重合。如图，红色方块就是文字没挪动之前的位置。
    <div align=center><img width="300" height="300" src="https://github.com/wongtaian/CustomView/blob/ca132770ef027e3c26d0bab3f2a2b9e170eab2b5/png/clock3.jpg"/></div>
+
+### 5、[雷达图](https://github.com/wongtaian/CustomView/blob/91c32973bc3cbf9a5c91cc92f953a91cccf9c08d/app/src/main/java/com/konggeek/hz/customview/chart/RadarView.java)
+仿英雄联盟能力值的雷达图。
+<div align=center><img width="300" height="300" src="https://github.com/wongtaian/CustomView/blob/91c32973bc3cbf9a5c91cc92f953a91cccf9c08d/png/radar.png"/></div>
