@@ -9,7 +9,7 @@ import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.konggeek.hz.customview.chart.BarChartView;
+import com.konggeek.hz.customview.vg.StarBar;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -21,11 +21,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        final BarChartView barChartView = findViewById(R.id.bar_chart);
-        barChartView.setOnClickListener(new View.OnClickListener() {
+        final StarBar starBar = findViewById(R.id.star_bar);
+//        final RadarView radarView = findViewById(R.id.radar_view);
+        findViewById(R.id.text).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewSaveToImage(barChartView);
+                viewSaveToImage(starBar);
             }
         });
     }
@@ -47,6 +48,11 @@ public class MainActivity extends AppCompatActivity {
                 // SD卡根目录
 //                File sdRoot = Environment.getExternalStorageDirectory();
                 String FILEPATH = Environment.getExternalStorageDirectory() + "/customview";
+                File fileParent = new File(FILEPATH);
+                if (!fileParent.exists()) {
+                    fileParent.mkdirs();
+                }
+
                 File file = new File(FILEPATH, System.currentTimeMillis() + ".PNG");
                 fos = new FileOutputStream(file);
             } else
