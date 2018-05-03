@@ -30,8 +30,7 @@
 
   ## 二、ViewGroup
 ### 1、[StarBar-评价](https://github.com/wongtaian/CustomView/blob/master/app/src/main/java/com/konggeek/hz/customview/vg/StarBar.java)
-    系统自带的 RatingBar 在设置星星大小，间距时不是很方便，效果和 UI 上也总是有差距。所以做了个自定义的 StarBar，继承自 LinearLayout ，并添加 ImageView 做为星星，根据点击位置设置点亮星星的个数。
-    <div align=center><img width="300" height="300" src="https://github.com/wongtaian/CustomView/blob/dc8fb6f54f499f78b8aaf8d6d32dbb23cb1a52f7/png/1017788CD4B230110F1F1C04BF39B107.png"/></div>
+系统自带的 RatingBar 在设置星星大小，间距时不是很方便，效果和 UI 上也总是有差距。所以做了个自定义的 StarBar，继承自 LinearLayout ，并添加 ImageView 做为星星，根据点击位置设置点亮星星的个数。  <div align=center><img width="300" height="300" src="https://github.com/wongtaian/CustomView/blob/dc8fb6f54f499f78b8aaf8d6d32dbb23cb1a52f7/png/1017788CD4B230110F1F1C04BF39B107.png"/></div>
     可设置的属性：
       <declare-styleable name="StarBar">
         <!--星星总数-->
