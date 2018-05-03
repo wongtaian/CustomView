@@ -27,3 +27,33 @@
 ### 5、[雷达图](https://github.com/wongtaian/CustomView/blob/91c32973bc3cbf9a5c91cc92f953a91cccf9c08d/app/src/main/java/com/konggeek/hz/customview/chart/RadarView.java)
 仿英雄联盟能力值的雷达图。
 <div align=center><img width="300" height="300" src="https://github.com/wongtaian/CustomView/blob/91c32973bc3cbf9a5c91cc92f953a91cccf9c08d/png/radar.png"/></div>
+
+
+    ## 二、ViewGroup
+    ### 1、[StarBar-评价](https://github.com/wongtaian/CustomView/blob/master/app/src/main/java/com/konggeek/hz/customview/vg/StarBar.java)
+    系统自带的 RatingBar 在设置星星大小，间距时不是很方便，效果和 UI 上也总是有差距。所以做了个自定义的 StarBar，继承自 LinearLayout ，并添加 ImageView 做为星星，根据点击位置设置点亮星星的个数。
+    <div align=center><img width="300" height="300" src="https://github.com/wongtaian/CustomView/blob/dc8fb6f54f499f78b8aaf8d6d32dbb23cb1a52f7/png/1017788CD4B230110F1F1C04BF39B107.png"/></div>
+    可设置的属性：
+      <declare-styleable name="StarBar">
+        <!--星星总数-->
+        <attr name="numStar" format="integer"/>
+        <!--步进值-->
+        <attr name="stepHalf" format="boolean"/>
+        <!--点亮星星数-->
+        <attr name="value" format="float"/>
+        <!--点亮星星的图片资源-->
+        <attr name="progressRsdId" format="reference"/>
+        <!--亮一半的图片资源-->
+        <attr name="secondProgressResId" format="reference"/>
+        <!--没亮的图片资源-->
+        <attr name="normalResId" format="reference"/>
+        <!--星星之间的距离-->
+        <attr name="marginLeftStar" format="dimension"/>
+        <attr name="marginRightStar" format="dimension"/>
+         <!--星星的宽度-->
+        <attr name="widthStar" format="dimension"/>
+        <!--星星的高度-->
+        <attr name="heightStar" format="dimension"/>
+        <!--是否是指示器，true 不允许用户修改 -->
+        <attr name="isIndicator" format="boolean"/>
+    </declare-styleable>
