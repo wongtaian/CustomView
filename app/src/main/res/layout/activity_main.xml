@@ -5,6 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/black"
+    android:clipChildren="false"
     tools:context="com.konggeek.hz.customview.MainActivity">
     <com.konggeek.hz.customview.chart.PieChart3DView
         android:id="@+id/pie_3d"
@@ -36,20 +38,28 @@
         android:layout_centerInParent="true"
         android:visibility="gone"/>
     <com.konggeek.hz.customview.vg.StarBar
+        android:id="@+id/star_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="20dp"
-        android:id="@+id/star_bar"
         android:layout_centerInParent="true"
+        android:padding="20dp"
+        android:visibility="gone"
         app:heightStar="25dp"
         app:isIndicator="false"
         app:marginRightStar="5dp"
-        android:visibility="visible"
         app:numStar="5"
         app:stepHalf="false"
         app:value="3"
         app:widthStar="12dp"
     />
+
+    <com.konggeek.hz.customview.vg.ZoomViewPager
+        android:id="@+id/zoom_view_pager"
+        android:layout_width="match_parent"
+        android:layout_centerInParent="true"
+        android:layout_height="match_parent"
+        android:clipChildren="false"/>
+
     <com.konggeek.hz.customview.chart.TestView
         android:layout_width="match_parent"
         android:layout_height="400dp"
@@ -63,6 +73,8 @@
               android:background="@color/colorPrimary"
               android:gravity="center"
               android:text="button"
-              android:textColor="#ffffff"/>
+              android:textColor="#ffffff"
+              android:textStyle="italic"
+              android:visibility="visible"/>
 
 </RelativeLayout>

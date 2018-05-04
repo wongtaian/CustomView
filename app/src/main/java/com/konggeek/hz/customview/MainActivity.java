@@ -6,30 +6,70 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.v4.view.PagerAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
 
-import com.konggeek.hz.customview.vg.StarBar;
+import com.konggeek.hz.customview.vg.ZoomViewPager;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private String FILEPATH = Environment.getExternalStorageDirectory() + "/customview";
+    private List<String> data = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        final StarBar starBar = findViewById(R.id.star_bar);
-//        final RadarView radarView = findViewById(R.id.radar_view);
+        final ZoomViewPager viewPager = findViewById(R.id.zoom_view_pager);
+        for (int i = 0; i < 30; i++) {
+            data.add(String.valueOf(i));
+        }
+        viewPager.setAdapter(mAdapter);
+
+
+
         findViewById(R.id.text).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewSaveToImage(starBar);
+//                viewSaveToImage(viewPager);
             }
         });
     }
+
+    private PagerAdapter mAdapter = new PagerAdapter() {
+        @Override
+        public int getCount() {
+            return data.size();
+        }
+
+        @Override
+        public boolean isViewFromObject(View view, Object object) {
+            return view == object;
+        }
+
+        @Override
+        public Object instantiateItem(ViewGroup container, int position) {
+            ImageView imageView = new ImageView(container.getContext());
+            imageView.setImageResource(R.mipmap.timg);
+            imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+            imageView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+            container.addView(imageView);
+            return imageView;
+        }
+
+        @Override
+        public void destroyItem(ViewGroup container, int position, Object object) {
+            container.removeView((View) object);
+        }
+    };
+
 
     public void viewSaveToImage(View view) {
         view.setDrawingCacheEnabled(true);
