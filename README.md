@@ -54,3 +54,7 @@
         <attr name="heightStar" format="dimension"/>
         <!--是否是指示器，true 不允许用户修改 -->
         <attr name="isIndicator" format="boolean"/>
+
+### 2、[ViewPager上滑显示详情](https://github.com/wongtaian/CustomView/blob/9fbb9770bc81d7016c8d77357ff035f1e7ca0ea0/app/src/main/java/com/konggeek/hz/customview/vg/ZoomViewPager.java)
+<div align=center><img width="150" height="280" src="https://github.com/wongtaian/CustomView/blob/a7d8657fb9e97f6189284b0a902ebf6cbf1f41fa/png/vp1.jpg"/></div><div align=center><img width="150" height="280" src="https://github.com/wongtaian/CustomView/blob/a7d8657fb9e97f6189284b0a902ebf6cbf1f41fa/png/vp2.jpg"/></div>
+在ViewPager和其父布局中设置 android:clipChildren="false"，这样可以做出中间大图的两端显示一点前后的图片。拦截ViewPager的 dispatchTouchEvent 事件，判断上滑下滑或者单击时设置ViewPager的width和height，来切换显示两种效果。
